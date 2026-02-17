@@ -9,7 +9,6 @@ app.use(express.json());
 const CLIENT_ID = process.env.ZAKEKE_CLIENT_ID;
 const CLIENT_SECRET = process.env.ZAKEKE_CLIENT_SECRET;
 
-// 1. Endpoint per il Token (già funzionante)
 app.get('/token', async (req, res) => {
     try {
         const auth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
@@ -23,19 +22,19 @@ app.get('/token', async (req, res) => {
     }
 });
 
-// 2. NUOVO: Endpoint per il Catalogo Prodotti
-// Questo sblocca l'errore "Product Catalog API"
+// Endpoint catalogo potenziato per Zakeke
 app.get('/catalog', (req, res) => {
     const products = [
         {
-            id: "Felpa01",
+            id: "10071943",
             name: "Felpa Rosa HSTYLE",
             description: "Felpa personalizzabile",
             price: 39.90,
-            imageUrl: "https://www.hstyle.it/logo-white.png"
+            imageUrl: "https://www.hstyle.it/logo-white.png",
+            sku: "FELPA-ROSA"
         }
     ];
-    // Inviamo i dati in più formati per garantire la lettura
+    // Rispondiamo con tutti i formati che Zakeke potrebbe cercare
     res.json({ 
         products: products,
         items: products, 
@@ -47,4 +46,4 @@ app.get('/catalog', (req, res) => {
 app.get('/', (req, res) => res.send('Ponte attivo!'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running`));

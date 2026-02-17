@@ -26,20 +26,21 @@ app.get('/token', async (req, res) => {
 // 2. NUOVO: Endpoint per il Catalogo Prodotti
 // Questo sblocca l'errore "Product Catalog API"
 app.get('/catalog', (req, res) => {
-    // Aggiungiamo 'items' e 'count' per massima compatibilità
     const products = [
         {
-            id: "felpa01",
+            id: "Felpa01",
             name: "Felpa Rosa HSTYLE",
             description: "Felpa personalizzabile",
             price: 39.90,
             imageUrl: "https://www.hstyle.it/logo-white.png"
         }
     ];
+    // Inviamo i dati in più formati per garantire la lettura
     res.json({ 
         products: products,
         items: products, 
-        count: 1 
+        count: 1,
+        totalCount: 1
     });
 });
 

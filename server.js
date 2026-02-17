@@ -29,7 +29,7 @@ app.get('/catalog', (req, res) => {
     // Aggiungiamo 'items' e 'count' per massima compatibilità
     const products = [
         {
-            id: "10071943",
+            id: "felpa01",
             name: "Felpa Rosa HSTYLE",
             description: "Felpa personalizzabile",
             price: 39.90,
